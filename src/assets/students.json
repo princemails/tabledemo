@@ -1,0 +1,43 @@
+[
+
+  {
+    "Name":"Prince",
+    "City": "Abakaliki",
+    "State": "Ebonyi",
+    "Pincode": 6987,
+    "MobileNo": 2347036610058
+  },
+
+  {
+    "Name":"Ike",
+    "City": "Ikeja",
+    "State": "Lagos",
+    "Pincode": 4327,
+    "MobileNo": 2347045610658
+  },
+
+  {
+    "Name":"Nnenna",
+    "City": "Bauchi",
+    "State": "Bauchi",
+    "Pincode": 365798,
+    "MobileNo": 2348056715
+  },
+
+  {
+    "Name":"John",
+    "City": "Alausa",
+    "State": "Lagos",
+    "Pincode": 675845,
+    "MobileNo": 2348034565
+  },
+
+  {
+    "Name":"Monday",
+    "City": "Jos",
+    "State": "Plateau",
+    "Pincode": 650975,
+    "MobileNo": 2349056478
+  }
+
+]
