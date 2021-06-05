@@ -1,12 +1,8 @@
-<div class= "form-group row"></div>
-<div class= "form-group row">
-  <label for="search" class="col-sm-2 col-form-label" style="text-align: right;">Search</label>
-  <div class="col-sm-6">
-    <input type="text" [(ngModel)]="searchValue" class="form-control" id="search" />
-  </div>
+<div class="wrapper">
+  <input type="text" [(ngModel)]="searchValue" class="input" id="search" placeholder="Search anything here"/>
 </div>
 <table class="table">
-  <thead class="thead-dark">
+  <thead>
     <tr>
       <th scope="col">Name</th>
       <th scope="col">City</th>
@@ -16,7 +12,7 @@
     </tr>
   </thead>
   <tbody *ngIf ='Students'>
-    <tr *ngFor="let student of Students | searchfilter:searchValue" >
+    <tr *ngFor="let student of Students | searchfilter:searchValue" class="active-row">
       <td scope="col">{{student.Name}}</td>
       <td scope="col">{{student.City}}</td>
       <td scope="col">{{student.State}}</td>
