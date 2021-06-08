@@ -1,23 +1,26 @@
 <div class="wrapper">
-  <input type="text" [(ngModel)]="searchValue" class="input" id="search" placeholder="Search anything here"/>
+  <input type="text" [(ngModel)]="name" (ngModelChange) = "search()" class="input" id="search" placeholder="Search anything here"/>
 </div>
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">Name</th>
-      <th scope="col">City</th>
-      <th scope="col">State</th>
-      <th scope="col">Pincode</th>
-      <th scope="col">Mobile No</th>
+      <th (click) = "sort('Id')">ID&nbsp; <i class = "fa fa-sort"></i> </th>
+      <th (click) = "sort('Name')">Name&nbsp; <i class = "fa fa-sort"></i> </th>
+      <th (click) = "sort('City')">City &nbsp; <i class = "fa fa-sort"></i> </th>
+      <th (click) = "sort('State')" scope="col">State &nbsp; <i class = "fa fa-sort"></i></th>
+      <th (click) = "sort('Pincode')">Pincode &nbsp; <i class = "fa fa-sort"></i></th>
+      <th (click) = "sort('MobileNo')">Mobile No &nbsp; <i class = "fa fa-sort"></i></th>
     </tr>
   </thead>
   <tbody *ngIf ='Students'>
-    <tr *ngFor="let student of Students | searchfilter:searchValue" class="active-row">
-      <td scope="col">{{student.Name}}</td>
-      <td scope="col">{{student.City}}</td>
-      <td scope="col">{{student.State}}</td>
-      <td scope="col">{{student.Pincode}}</td>
-      <td scope="col">{{student.MobileNo}}</td>
+    <tr *ngFor="let student of Students | orderBy: key: reverse | paginate: {itemsPerPage:5, currentPage:p}">
+      <td>{{student.Id}}</td>
+      <td>{{student.Name}}</td>
+      <td>{{student.City}}</td>
+      <td>{{student.State}}</td>
+      <td>{{student.Pincode}}</td>
+      <td>{{student.MobileNo}}</td>
     </tr>
   </tbody>
 </table>
+<pagination-controls (pageChange) = "p = $event"></pagination-controls>
