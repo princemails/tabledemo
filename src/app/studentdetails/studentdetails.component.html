@@ -1,5 +1,5 @@
 <div class="wrapper">
-  <input type="text" [(ngModel)]="name" (ngModelChange) = "search()" class="input" id="search" placeholder="Search anything here"/>
+  <input type="text" [(ngModel)]="searchVal" (ngModelChange) = "search()" class="input" id="search" placeholder="Search anything here"/>
 </div>
 <table class="table">
   <thead>
@@ -12,8 +12,8 @@
       <th (click) = "sort('MobileNo')">Mobile No &nbsp; <i class = "fa fa-sort"></i></th>
     </tr>
   </thead>
-  <tbody *ngIf ='Students'>
-    <tr *ngFor="let student of Students | orderBy: key: reverse | paginate: {itemsPerPage:5, currentPage:p}">
+  <tbody *ngIf ='filteredStudents'>
+    <tr *ngFor="let student of filteredStudents | orderBy: key: reverse | paginate: {itemsPerPage:5, currentPage:p}">
       <td>{{student.Id}}</td>
       <td>{{student.Name}}</td>
       <td>{{student.City}}</td>

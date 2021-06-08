@@ -11,22 +11,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StudentdetailsComponent implements OnInit {
   Students:any;
-  name : any;
+  filteredStudents:any;
+  searchVal : string = '';
   p : number = 1;
   constructor(private httpClient: HttpClient) { }
 
   ngOnInit() {
     this.httpClient.get('/assets/students.json').subscribe((result) => {
       this.Students = result;
+      this.filteredStudents = [...this.Students]
     });
   }
 
   search(){
-    if(this.name == ""){
-      this.ngOnInit();
+    if(this.searchVal == ""){
+      this.filteredStudents = [...this.Students]
     }else{
-      this.Students = this.Students.filter(result => {
-        return result.name.toLocaleLowerCase().match(this.name.toLocaleLowerCase());
+      this.filteredStudents = this.Students.filter(result => {
+        console.log(result)
+        return (result.Id.toString().toLowerCase().includes(this.searchVal.toLowerCase()) ||
+        result.Name.toString().toLowerCase().includes(this.searchVal.toLowerCase()) ||
+        result.City.toString().toLowerCase().includes(this.searchVal.toLowerCase()) ||
+        result.State.toString().toLowerCase().includes(this.searchVal.toLowerCase()) ||
+        result.Pincode.toString().toLowerCase().includes(this.searchVal.toLowerCase()) ||
+        result.MobileNo.toString().toLowerCase().includes(this.searchVal.toLowerCase()))
       });
     }
   }
