@@ -13,7 +13,7 @@
     </tr>
   </thead>
   <tbody *ngIf ='filteredStudents'>
-    <tr *ngFor="let student of filteredStudents | orderBy: key: reverse | paginate: {itemsPerPage:5, currentPage:p}">
+    <tr *ngFor="let student of filteredStudents | orderBy: key: reverse | paginate: {itemsPerPage:11, currentPage:p}">
       <td>{{student.Id}}</td>
       <td>{{student.Name}}</td>
       <td>{{student.City}}</td>
@@ -23,4 +23,7 @@
     </tr>
   </tbody>
 </table>
-<pagination-controls (pageChange) = "p = $event"></pagination-controls>
+<div class="pagination">
+  <pagination-controls (pageChange) = "p = $event"></pagination-controls>
+</div>
+
