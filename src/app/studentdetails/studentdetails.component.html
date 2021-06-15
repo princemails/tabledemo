@@ -4,22 +4,12 @@
 <table class="table">
   <thead>
     <tr>
-      <th (click) = "sort('Id')">ID&nbsp; <i class = "fa fa-sort"></i> </th>
-      <th (click) = "sort('Name')">Name&nbsp; <i class = "fa fa-sort"></i> </th>
-      <th (click) = "sort('City')">City &nbsp; <i class = "fa fa-sort"></i> </th>
-      <th (click) = "sort('State')" scope="col">State &nbsp; <i class = "fa fa-sort"></i></th>
-      <th (click) = "sort('Pincode')">Pincode &nbsp; <i class = "fa fa-sort"></i></th>
-      <th (click) = "sort('MobileNo')">Mobile No &nbsp; <i class = "fa fa-sort"></i></th>
+      <th *ngFor = "let th of tableKeys" (click) = "sort(th)" > {{th}} &nbsp; <i class = "fa fa-sort"></i> </th>
     </tr>
   </thead>
   <tbody *ngIf ='filteredStudents'>
-    <tr *ngFor="let student of filteredStudents | orderBy: key: reverse | paginate: {itemsPerPage:11, currentPage:p}">
-      <td>{{student.Id}}</td>
-      <td>{{student.Name}}</td>
-      <td>{{student.City}}</td>
-      <td>{{student.State}}</td>
-      <td>{{student.Pincode}}</td>
-      <td>{{student.MobileNo}}</td>
+    <tr *ngFor="let student of filteredStudents | orderBy: key: true | paginate: {itemsPerPage:11, currentPage:p}">
+      <td *ngFor = "let th of tableKeys; let i = index">{{student[th]}}</td>
     </tr>
   </tbody>
 </table>

@@ -14,31 +14,35 @@ export class StudentdetailsComponent implements OnInit {
   filteredStudents:any;
   searchVal : string = '';
   p : number = 1;
+  tableKeys = [];
   constructor(private httpClient: HttpClient) { }
 
   ngOnInit() {
     this.httpClient.get('/assets/students.json').subscribe((result) => {
       this.Students = result;
-      this.filteredStudents = [...this.Students]
+      this.filteredStudents = [...this.Students];
+      this.tableKeys = Object.keys (this.Students[0]);
     });
   }
 
   search(){
+    this.filteredStudents = [];
     if(this.searchVal == ""){
       this.filteredStudents = [...this.Students]
     }else{
-      this.filteredStudents = this.Students.filter(result => {
-        console.log(result)
-        return (result.Id.toString().toLowerCase().includes(this.searchVal.toLowerCase()) ||
-        result.Name.toString().toLowerCase().includes(this.searchVal.toLowerCase()) ||
-        result.City.toString().toLowerCase().includes(this.searchVal.toLowerCase()) ||
-        result.State.toString().toLowerCase().includes(this.searchVal.toLowerCase()) ||
-        result.Pincode.toString().toLowerCase().includes(this.searchVal.toLowerCase()) ||
-        result.MobileNo.toString().toLowerCase().includes(this.searchVal.toLowerCase()))
-      });
+      this.tableKeys.forEach(element=> {
+        let localFilter = this.Students.filter(result => {
+          if (result[element]){
+            return result[element].toString().toLowerCase().includes(this.searchVal.toLowerCase())
+          }
+        });
+        if (localFilter.length>0){
+          this.filteredStudents = [...this.filteredStudents, ...localFilter]
+        }
+      })
     }
   }
-  key: string = 'name';
+  key: string = '';
   reverse: boolean = false;
   sort(key) {
     this.key = key;

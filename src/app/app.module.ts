@@ -7,8 +7,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { Ng2OrderModule } from 'ng2-order-pipe';
 import {NgxPaginationModule} from 'ngx-pagination';
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
-import { StudentdetailsComponent } from './studentdetails/studentdetails.component'
+
+import { StudentdetailsComponent } from './studentdetails/studentdetails.component';
+
 
 @NgModule({
   declarations: [
@@ -22,8 +23,7 @@ import { StudentdetailsComponent } from './studentdetails/studentdetails.compone
     ReactiveFormsModule,
     HttpClientModule,
     Ng2OrderModule,
-    NgxPaginationModule,
-    Ng2SearchPipeModule
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
